@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -85,15 +86,22 @@ public class SimpleClickFragment extends Fragment {
 
     //初始化监听器
     private void initListener() {
+        //防抖动
         //点击监听，添加了throttleFirst方法可以防抖动
         //throttleFirst,为一段时间内仅能为第一次行为
         RxView.clicks(clicksBtn).throttleFirst(600, TimeUnit.MILLISECONDS).subscribe(Void -> {
             //Snackbar第一个参数可以是任意的view，他会往上找，最后找到rootView
             Snackbar.make(clicksBtn, "发送了" + ++i + "个事件", Snackbar.LENGTH_SHORT).show();
         });
+
+        //长按点击
+        RxView.longClicks(clicksBtn).subscribe(Void -> {
+            Snackbar.make(clicksBtn, "Longclick", Snackbar.LENGTH_SHORT).show();
+        });
     }
 
     //初始化适配器
     private void initAdapter() {
+        mlistview.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, mList));
     }
 }

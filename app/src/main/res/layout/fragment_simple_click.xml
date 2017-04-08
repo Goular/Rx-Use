@@ -17,7 +17,10 @@
 
     <ListView
         android:id="@+id/mlistview"
+        android:background="#000000"
         android:layout_width="match_parent"
+        android:dividerHeight="2dp"
+        android:divider="#ffffff"
         android:layout_height="match_parent"
         android:layout_marginTop="40dp" />
 
