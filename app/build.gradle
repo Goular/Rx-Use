@@ -1,0 +1,94 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "com.goular.rx"
+        minSdkVersion 18
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        //jdk8 lambda表达式的开启，这样就不用装gradle-retrolambda插件了
+        jackOptions{
+            enabled true
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    //项目支持jdk8，这样就不用装gradle-retrolambda插件了
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+    //Android官方控件库
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:cardview-v7:25.3.1'
+    compile 'com.android.support:leanback-v17:25.3.1'
+    compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    //ButterKnife框架的添加
+    compile 'com.jakewharton:butterknife:8.5.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1' //记得到时开启，使用jack编译器的时候会出现异常
+    //Gson解析json框架
+    compile 'com.google.code.gson:gson:2.8.0'
+    //PhotoView
+    compile 'com.github.chrisbanes.photoview:library:1.2.4'
+    //SQLite数据库访问操作框架
+    compile 'org.litepal.android:core:1.5.1'
+    //Logger框架
+    compile 'com.orhanobut:logger:1.15'
+    //EventBus 事件总线
+    compile 'org.greenrobot:eventbus:3.0.0'
+    //Glide图片浏览框架
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    //Picasso图片浏览框架
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'jp.wasabeef:picasso-transformations:2.1.2'     //基于Picasso的图片转换库(圆角，星型，等...),https://github.com/wasabeef/picasso-transformations
+    compile 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'      // 与picasso-transformations配套，若想使用GPU过滤器
+    //Retrofit网络访问框架
+    compile 'com.squareup.retrofit2:retrofit:2.2.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.2.0'       //GSON转换器
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.2.0'       //RxJava依赖
+    //RxJava异步线程控制框架
+    compile 'io.reactivex:rxjava:1.2.9'
+    compile 'io.reactivex:rxandroid:1.2.1'
+    //RxPermisson框架使用
+    compile 'com.tbruyelle.rxpermissions:rxpermissions:0.9.3@aar'
+    //RxBinding
+    compile 'com.jakewharton.rxbinding:rxbinding:1.0.1'
+    compile 'com.jakewharton.rxbinding:rxbinding-support-v4:1.0.1'
+    compile 'com.jakewharton.rxbinding:rxbinding-appcompat-v7:1.0.1'
+    compile 'com.jakewharton.rxbinding:rxbinding-design:1.0.1'
+    compile 'com.jakewharton.rxbinding:rxbinding-recyclerview-v7:1.0.1'
+    compile 'com.jakewharton.rxbinding:rxbinding-leanback-v17:1.0.1'
+    //OkHTTP 网络访问框架
+    compile 'com.squareup.okhttp3:okhttp:3.6.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'        //日志拦截器
+    //RecyclerView使用的封装 (https://github.com/CymChad/BaseRecyclerViewAdapterHelper)
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.8'
+    //图标库(https://github.com/mikepenz/Android-Iconics)
+    compile "com.mikepenz:iconics-core:2.8.2@aar"
+    //字体库
+    compile 'com.mikepenz:material-design-iconic-typeface:2.2.0.2@aar'
+    compile 'com.mikepenz:fontawesome-typeface:4.7.0.0@aar'
+    compile 'com.mikepenz:foundation-icons-typeface:3.0.0.2@aar'
+    //可定制的Meterial风格的Dialog(网址:https://github.com/afollestad/material-dialogs)
+    compile 'com.afollestad.material-dialogs:core:0.9.0.2'
+    compile 'com.afollestad.material-dialogs:commons:0.9.0.2'
+}
