@@ -1,13 +1,15 @@
-package com.goular.rx;
+package com.goular.rx.rxuse;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import com.goular.rx.R;
+
+public class RxBindingActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_rx_binding);
     }
 }
