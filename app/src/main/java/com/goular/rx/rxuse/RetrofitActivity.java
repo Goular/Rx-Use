@@ -20,8 +20,11 @@ import retrofit2.http.Path;
 import rx.Observable;
 import rx.functions.Action1;
 
+/**
+ * 普通的Retrofit2的使用方法，不含RxJava
+ */
 public class RetrofitActivity extends AppCompatActivity {
-    public static final String API_URL = "http://apis.haoservice.com/lifeservice/Joke/ImgList?key=f769619fb2636f1a6813377f67e31190";
+    public static final String API_URL = "https://www.goular.com/";
 
     //https://raw.githubusercontent.com/zhangkekekeke/RxJavaObserver/master/jsondata
     @Override
@@ -33,7 +36,6 @@ public class RetrofitActivity extends AppCompatActivity {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(API_URL)
                 .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
 
         Call<List<String>> call = retrofit.create(GitHub.class).dataXiaoHua();
@@ -45,7 +47,7 @@ public class RetrofitActivity extends AppCompatActivity {
                         .subscribe(new Action1<String>() {
                             @Override
                             public void call(String itemData) {
-                                Log.d("RxJava_R", itemData + ")");
+                                Logger.d("("+"RxJava_R", itemData + ")");
                             }
                         });
 
@@ -69,7 +71,7 @@ public class RetrofitActivity extends AppCompatActivity {
                 @Path("owner") String owner,
                 @Path("txt") String repo);
 
-        @GET
+        @GET("index.php")
         Call<List<String>> dataXiaoHua();
     }
 }

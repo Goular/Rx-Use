@@ -25,7 +25,8 @@
         <activity android:name=".rxuse.RxJavaMapActivity" />
         <activity android:name=".rxuse.RxAndroidActivity" />
         <activity android:name=".rxuse.RxBindingActivity" />
-        <activity android:name=".rxuse.RetrofitActivity">
+        <activity android:name=".rxuse.RetrofitActivity"/>
+        <activity android:name=".rxuse.RxRetrofitActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
