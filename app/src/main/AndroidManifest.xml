@@ -11,6 +11,8 @@
         android:name="android.hardware.touchscreen"
         android:required="false" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -22,13 +24,7 @@
         <activity android:name=".rxuse.RxJavaCreateActivity" />
         <activity android:name=".rxuse.RxJavaMapActivity" />
         <activity android:name=".rxuse.RxAndroidActivity" />
-        <activity android:name=".rxuse.RxBindingActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".rxuse.RxBindingActivity" />
         <activity android:name=".rxuse.RetrofitActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
