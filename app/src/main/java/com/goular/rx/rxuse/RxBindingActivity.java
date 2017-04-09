@@ -45,6 +45,8 @@ public class RxBindingActivity extends AppCompatActivity implements RadioGroup.O
         ButterKnife.bind(this);
         initToolBar();
         mRadioGroup.setOnCheckedChangeListener(this);
+        //设置第一个显示的Fragment
+        setFragment(SimpleClickFragment.getInstance());
     }
 
     private void initToolBar() {
