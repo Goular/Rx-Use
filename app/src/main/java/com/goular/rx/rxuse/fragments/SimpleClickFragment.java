@@ -1,7 +1,6 @@
 package com.goular.rx.rxuse.fragments;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,66 +12,87 @@ import android.widget.ListView;
 
 import com.goular.rx.R;
 import com.jakewharton.rxbinding.view.RxView;
-import com.jakewharton.rxbinding.widget.RxAdapter;
 import com.jakewharton.rxbinding.widget.RxAdapterView;
-import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import rx.Subscription;
 import rx.functions.Action1;
 
-import static com.goular.rx.R.id.mlistview;
-
-/**
- * Created by zhaoj on 2017/4/9.
- */
-
 public class SimpleClickFragment extends Fragment {
-
     private static SimpleClickFragment fragment;
-    @BindView(R.id.clicks_btn)
-    Button clicksBtn;
-    @BindView(mlistview)
-    ListView mListView;
-    Unbinder unbinder;
+    private ListView mListView;
+    private Button mButton;
     private View rootView;
     private List<String> mList;
     private Subscription clickSubscription;
 
     public SimpleClickFragment() {
-        super();
+        // Required empty public constructor
     }
 
+    //获取fragment单例
     public static SimpleClickFragment getInstance() {
-        if (fragment == null)
+        if (fragment == null) {
             fragment = new SimpleClickFragment();
+        }
         return fragment;
     }
 
+
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //创建模拟数据
         initData();
     }
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if (rootView == null) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        if (rootView == null) {//初始化控件
             rootView = inflater.inflate(R.layout.fragment_simple_click, null);
+            mListView = (ListView) rootView.findViewById(R.id.mlistview);
+            mButton = (Button) rootView.findViewById(R.id.clicks_btn);
         }
-        unbinder = ButterKnife.bind(this, rootView);
-        //初始化适配器，监听器
+        //初始化适配器,监听器
         initAdapter();
         initListener();
+
         return rootView;
+    }
+
+    private int i = 0;
+
+    private void initListener() {
+        //点击监听，防抖动
+        clickSubscription = RxView.clicks(mButton).throttleFirst(600, TimeUnit.MILLISECONDS).subscribe(new Action1<Void>() {
+            @Override
+            public void call(Void aVoid) {
+                Snackbar.make(mButton, "发送了" + ++i + "个事件", Snackbar.LENGTH_SHORT).show();
+            }
+        });
+        //按钮长按监听
+        RxView.longClicks(mButton).subscribe(aVoid -> {
+            Snackbar.make(mButton, "Longclick", Snackbar.LENGTH_SHORT).show();
+        });
+
+        //item点击监听
+        RxAdapterView.itemClicks(mListView)
+                .subscribe(position -> {
+                    Snackbar.make(mButton, "item click " + position, Snackbar.LENGTH_SHORT).show();
+                });
+        //item长按监听
+        RxAdapterView.itemLongClicks(mListView)
+                .subscribe(position -> {
+                    Snackbar.make(mButton, "item longclick " + position, Snackbar.LENGTH_SHORT).show();
+                });
+    }
+
+    private void initAdapter() {
+        mListView.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, mList));
     }
 
     private void initData() {
@@ -83,9 +103,8 @@ public class SimpleClickFragment extends Fragment {
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
+    public void onDestroy() {
+        super.onDestroy();
         if (clickSubscription != null) {
             clickSubscription.unsubscribe();
             clickSubscription = null;
@@ -94,35 +113,5 @@ public class SimpleClickFragment extends Fragment {
         if (fragment != null) {
             fragment = null;
         }
-    }
-
-    private int i = 0;
-
-    //初始化监听器
-    private void initListener() {
-        //防抖动
-        //点击监听，添加了throttleFirst方法可以防抖动
-        //throttleFirst,为一段时间内仅能为第一次行为
-        clickSubscription = RxView.clicks(clicksBtn).throttleFirst(600, TimeUnit.MILLISECONDS).subscribe(Void -> {
-            //Snackbar第一个参数可以是任意的view，他会往上找，最后找到rootView
-            Snackbar.make(clicksBtn, "发送了" + ++i + "个事件", Snackbar.LENGTH_SHORT).show();
-        });
-
-        //长按点击
-        RxView.longClicks(clicksBtn).subscribe(Void -> {
-            Snackbar.make(clicksBtn, "Longclick", Snackbar.LENGTH_SHORT).show();
-        });
-
-        Logger.d((mListView == null) + "");
-        //ListView Item点击监听
-        RxAdapterView.itemClicks(mListView)
-                .subscribe(position -> {
-                    Snackbar.make(clicksBtn, "item click " + position, Snackbar.LENGTH_SHORT).show();
-                });
-    }
-
-    //初始化适配器
-    private void initAdapter() {
-        mListView.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, mList));
     }
 }
