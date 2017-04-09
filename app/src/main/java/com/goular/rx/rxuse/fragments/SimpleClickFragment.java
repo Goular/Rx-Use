@@ -21,6 +21,10 @@ import java.util.concurrent.TimeUnit;
 import rx.Subscription;
 import rx.functions.Action1;
 
+/**
+ *  1.按钮点击内容(点击，长按)
+ *  2.ListView item的点击内容和长按内容
+ */
 public class SimpleClickFragment extends Fragment {
     private static SimpleClickFragment fragment;
     private ListView mListView;

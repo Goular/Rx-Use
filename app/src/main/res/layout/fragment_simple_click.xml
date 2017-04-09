@@ -19,5 +19,8 @@
         android:id="@+id/mlistview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#000000"
+        android:dividerHeight="2dp"
+        android:divider="#ffffff"
         android:layout_marginTop="40dp" />
 </LinearLayout>

@@ -24,6 +24,9 @@
         android:id="@+id/auto_lv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#000"
+        android:divider="#fff"
+        android:dividerHeight="2dp"
         android:layout_marginTop="5dp"
         android:layout_below="@+id/input_edit">
 
