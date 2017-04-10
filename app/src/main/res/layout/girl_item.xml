@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="image"
+            type="com.goular.rx.rxgank.model.Image" />
+    </data>
+
+    <FrameLayout
+        android:id="@+id/girl_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginTop="4dp"
+        android:background="@android:color/white"
+        android:foreground="?selectableItemBackgroundBorderless">
+
+
+
+    </FrameLayout>
+</layout>

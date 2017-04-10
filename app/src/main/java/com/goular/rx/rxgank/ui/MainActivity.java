@@ -1,15 +1,15 @@
-package com.goular.rx.rxgank;
+package com.goular.rx.rxgank.ui;
 
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 
 import com.goular.rx.R;
 
-public class PictureActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_picture);
+        setContentView(R.layout.activity_main);
     }
 }

@@ -34,16 +34,15 @@
         <activity android:name=".rxuse.RxLifeCycleActivity" />
 
         <!-- 添加Rx自定义项目的内容（利用gank.io的api来创建全Rx系列API的内容） -->
-
-        <activity android:name=".rxgank.AboutActivity" />
-        <activity android:name=".rxgank.MainActivity">
+        <activity android:name=".rxgank.ui.AboutActivity" />
+        <activity android:name=".rxgank.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".rxgank.PictureActivity"></activity>
+        <activity android:name=".rxgank.ui.PictureActivity"></activity>
     </application>
 
 </manifest>
