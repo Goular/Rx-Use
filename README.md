@@ -506,3 +506,32 @@ observeOn能调用多次
         //Query 为 key ，传入参数为value
         Call<ResponseBody> testUrlAndQuery(@Url String url, @Query("showAll") boolean showAll);        
 </pre>
+
+### RxPermissons
+<pre>
+    解决android6.0权限动态运行
+    1.RxPermissions的概念
+    Android运行时权限，是什么？
+    	RxJava针对Android平台的扩展，方便RxJava用于Android开发
+    
+    普通权限和危险权限？
+    普通权限：不涉及用户隐私（如： BLUETOOTH，INTERNET，SET_ALARM...）
+    危险权限：涉及用户隐私（如： CONTACTS， CAMERA ， STORAGE ...）
+    
+    6.0动态权限，新增API：
+    ContextCompat.checkSelfPermission()	检查某个权限，是否授权
+    
+    ActivityCompat.requestPermissions()		申请一个或多个权限
+    
+    ActivityCompat.shouldShowRequestPermissionRationale()
+    是否显示请求权限的说明
+    
+    onRequestPermissionsResult()	处理权限结果回调
+    
+    
+</pre>
+
+### RxLifeCycle
+<pre>
+
+</pre>
