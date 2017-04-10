@@ -20,6 +20,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <!-- 学习Rx系列的内容 -->
         <activity android:name=".rxuse.RxJavaBaseUseActivity" />
         <activity android:name=".rxuse.RxJavaCreateActivity" />
         <activity android:name=".rxuse.RxJavaMapActivity" />
@@ -28,8 +30,13 @@
         <activity android:name=".rxuse.RetrofitActivity" />
         <activity android:name=".rxuse.RxRetrofitActivity" />
         <activity android:name=".rxuse.PermissionActivity" />
-        <activity android:name=".rxuse.RxPermissionActivity"/>
-        <activity android:name=".rxuse.RxLifeCycleActivity">
+        <activity android:name=".rxuse.RxPermissionActivity" />
+        <activity android:name=".rxuse.RxLifeCycleActivity" />
+
+        <!-- 添加Rx自定义项目的内容（利用gank.io的api来创建全Rx系列API的内容） -->
+
+        <activity android:name=".rxgank.AboutActivity" />
+        <activity android:name=".rxgank.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
