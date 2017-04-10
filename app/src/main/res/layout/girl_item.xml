@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="image"
             type="com.goular.rx.rxgank.model.Image" />
@@ -19,7 +18,12 @@
         android:background="@android:color/white"
         android:foreground="?selectableItemBackgroundBorderless">
 
-
-
+        <com.goular.rx.rxgank.widget.RatioImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            app:originalHeight="@{image.height}"
+            app:originalWidth="@{image.width}" />
     </FrameLayout>
 </layout>
