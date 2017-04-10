@@ -28,7 +28,8 @@
         <activity android:name=".rxuse.RetrofitActivity" />
         <activity android:name=".rxuse.RxRetrofitActivity" />
         <activity android:name=".rxuse.PermissionActivity" />
-        <activity android:name=".rxuse.RxPermissionActivity">
+        <activity android:name=".rxuse.RxPermissionActivity"/>
+        <activity android:name=".rxuse.RxLifeCycleActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
