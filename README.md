@@ -540,4 +540,29 @@ observeOn能调用多次
         在android studio 里面添加引用
         compile 'com.trello:rxlifecycle:1.0 ' 
         compile 'com.trello:rxlifecycle-android:1.0'compile 'com.trello:rxlifecycle-components:1.0'
+        
+    //基本使用方法    
+    若是继承RxAppCompatActivity,在RxView中只用compose来快速使用
+        RxToolbar.itemClicks(rxbindingToolbar).compose(bindToLifecycle()).subscribe(menuItem -> {
+                    Snackbar.make(rxbindingToolbar, "toolbar " + menuItem.getTitle(), Snackbar.LENGTH_SHORT).show();
+                });
+    
+    //在继承的RxAppCompatingAtivity中制定某个生命周期进行管理,这里设置为在执行activity的onStop()方法的时候内容，会执行取消订阅者的内容，这样就可以让activity顺利释放资源
+    RxToolbar.itemClicks(rxbindingToolbar).compose(bindUntilEvent(ActivityEvent.STOP)).subscribe(menuItem -> {
+        Snackbar.make(rxbindingToolbar, "toolbar " + menuItem.getTitle(), Snackbar.LENGTH_SHORT).show();
+    });
+                
+                
+    //在没有继承RxAppCompatingAtivity的时候，我们上面的方法就不能直接的进行使用，此时我们但应该使用
+            private BehaviorSubject behaviorSubject = BehaviorSubject.create();
+            //在没有继承RxAppCompatActivity/RxFragment/RxActivity想使用RxLifeCycle的方法实例
+             RxToolbar.itemClicks(rxbindingToolbar).compose(RxLifecycle.bindUntilEvent(behaviorSubject, ActivityEvent.DESTROY)).subscribe((menuItem -> {
+                    Snackbar.make(rxbindingToolbar, "toolbar " + ((MenuItem) menuItem).getTitle(), Snackbar.LENGTH_SHORT).show();
+             }));    
+     
+            @Override
+             protected void onDestroy() {
+                super.onDestroy();
+                behaviorSubject.onNext(ActivityEvent.DESTROY);
+            }
 </pre>
