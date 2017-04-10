@@ -533,5 +533,11 @@ observeOn能调用多次
 
 ### RxLifeCycle
 <pre>
+    1.RxLifecycle的基本概念
+        RxLifecycle提供了基于activity和fragment生命周期事件的自动完成队列。用于避免不完整回调导致的内存泄漏。
 
+    2.RxLifecycle的配置方法
+        在android studio 里面添加引用
+        compile 'com.trello:rxlifecycle:1.0 ' 
+        compile 'com.trello:rxlifecycle-android:1.0'compile 'com.trello:rxlifecycle-components:1.0'
 </pre>
